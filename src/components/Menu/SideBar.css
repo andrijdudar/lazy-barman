@@ -1,0 +1,113 @@
+.wrapper {
+  /* margin: 10px; */
+  grid-area: side-bar;
+  /* position: fixed; */
+  /* min-width: 400px; */
+  /* max-width: 400px; */
+  padding: 10px;
+  overflow-y: auto;
+  height: 90vh;
+  /* transition: all .5s else-in-out; */
+  transition: all .3s ease-in-out;
+}
+
+/* #sidebar-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-area: side-bar;
+  width: 100%;
+} */
+
+.sidebar-nav {
+  width: 100%;
+}
+
+.sidebar-nav li {
+  line-height: 100%;
+  border-left: 1px solid var(--colorTextOrangeHover);
+  margin-bottom: 10px;
+  border-radius: 0.5em;
+  border: 1px solid transparent;
+  background-color: transparent;
+  box-shadow: 2px 1px 5px rgba(0, 0, 0, 1),
+    -2px -2px 5px rgba(255, 255, 255, 0.14);
+  transition: all 0.3s ease;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 24px;
+  width: 100%;
+}
+
+.sidebar-nav li:hover,
+.sidebar-nav li:focus {
+  border-radius: 5px;
+  cursor: pointer;
+  background: transparent;
+  /* border-left: 0.5px solid var(--colorTextOrangeHover); */
+  /* background: #444242; */
+  /* filter: brightness(90%); */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 1),
+    -4px -4px 5px rgba(255, 255, 255, 0.14);
+  transition: all 0.3s ease;
+}
+
+.btn-aside {
+  border-radius: 5px;
+  color: #fff;
+  text-align: start;
+  width: 100%;
+  height: 70px;
+}
+
+.sidebar-nav li:hover>.btn-aside {
+  color: var(--colorTextOrangeHover);
+}
+
+.item {
+  height: 70px;
+  padding: 25px;
+  margin-left: 0;
+  border-bottom: 0;
+}
+
+.sidebar-item {
+  width: 95%;
+}
+
+.sidebar-item:hover {
+  color: var(--colorTextOrangeHover);
+}
+
+@media (orientation: portrait) {
+  .wrapper {
+    position: fixed;
+    right: 0;
+    overflow-y: scroll;
+    z-index: 1;
+    min-width: 360px;
+    width: 100vw;
+    max-width: 100vh;
+    border-radius: 0.5em;
+    transform: translateY(-110%);
+    background-color: var(--backgroundNavBar);
+    /* height: 0; */
+    /* block-size: 0; */
+    /* padding-block: 0; */
+    /* display: none; */
+    transition: all .5s else-in-out;
+    transition-behavior: allow-discrete;
+  }
+
+  .wrapper-open {
+    position: relative;
+    padding-block: 10px;
+    display: block;
+    height: min-content;
+    /* overflow-y: auto; */
+    transform: translateX(0);
+    overflow-y: hidden;
+    /* opacity: 0.01; */
+  }
+}

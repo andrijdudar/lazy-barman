@@ -1,0 +1,109 @@
+.ingredientsList {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  border-radius: 10px;
+  margin-bottom: 100vh;
+  overflow-y: auto;
+  margin:10px;
+  height: 100vh;
+
+  @media (orientation: portrait) {
+  overflow-y: hidden;
+  height: min-content;
+    }
+
+
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--colorTextOrangeHover);
+  }
+
+  .ingredientSearch {
+    margin: 20px auto;
+  }
+
+  .ingredientsLi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin:10px;
+
+    .input,
+    .select {
+      border-radius: 25px;
+      width: 50px;
+      padding: 0 10px;
+    }
+  }
+
+  .ul {
+    margin: 15px;
+    /* list-style-type: none; */
+    padding: 0;
+
+    .detailsIngredients {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 1),
+        -2px -2px 5px rgba(255, 255, 255, 0.14);
+      color: var(--colorTextOrangeHover);
+      font-size: 14px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        scale: 1.01;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 1),
+          -3px -3px 5px rgba(255, 255, 255, 0.14);
+      }
+
+      strong {
+        display: inline-block;
+        /* width: 150px; // Ширина для назв параметра */
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      summary {
+        padding-inline: 2rem;
+        position: relative;
+        content: none;
+      }
+
+      /* summary::marker {
+         content: "▶";
+         @media (orientation: portrait) {
+           content: none;
+         }
+       } */
+      summary::before {
+        /* content: "▶"; */
+        position: absolute;
+        inset-inline-start: 0.5rem;
+        transition: rotate 0.3s;
+      }
+    }
+
+    .detailsIngredients[open] summary::before {
+      rotate: 90deg;
+    }
+
+    .detailsIngredients::details-content {
+      display: block;
+      margin-inline: 2rem;
+      block-size: 0;
+      overflow: hidden;
+      transition-property: block-size, content-visibility;
+      transition-duration: .5s;
+      transition-behavior: allow-discrete;
+    }
+
+    .detailsIngredients[open]::details-content {
+      block-size: auto;
+      block-size: calc-size(auto);
+    }
+  }
+}

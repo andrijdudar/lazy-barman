@@ -1,0 +1,80 @@
+.searchSelect {
+  box-sizing: border-box;
+  background-color: none;
+  width: 100%;
+  max-width: 350px;
+}
+
+.field-search {
+  transition: all 0.3s ease;
+  position: relative;
+  min-width: 100%;
+}
+
+.input-search {
+  color: var(--colorTextOrange);
+  padding-left: 10px;
+  margin-bottom: 12px;
+  border-radius: 1.5em;
+  border: 1px solid transparent;
+  background-color: transparent;
+  box-shadow: 2px 1px 5px rgba(0, 0, 0, 1),
+    -2px -2px 5px rgba(255, 255, 255, 0.14);
+  background-color: transparent;
+}
+
+.input-search::placeholder {
+  color: orange;
+}
+
+.input-search:hover {
+  box-shadow: 2px 1px 5px rgba(0, 0, 0, 1),
+    -3px -3px 5px rgba(255, 255, 255, 0.14);
+  transition: all 0.3s;
+}
+
+.input-search:focus {
+  color: var(--colorTextOrange);
+  border: 1px solid transparent;
+  box-shadow:
+    1px 1px 10px rgba(0, 0, 0, 1),
+    -1px -1px 3px rgba(255, 255, 255, 0.3),
+    inset 1px 1px 8px rgba(0, 0, 0, 2),
+    inset -3px -3px 5px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s;
+  outline: none;
+}
+
+i {
+  color: whitesmoke;
+}
+
+.display-none {
+  display: none;
+}
+
+.select-container {
+  position: absolute;
+  height: min-content;
+  max-height: 200px;
+  min-width: 250px;
+  width: min-content;
+  max-width: 350px;
+  background-color: var(--backgroundNavBar);
+  border: 1px solid black;
+  box-shadow: 2px 1px 5px rgba(0, 0, 0, 1),
+    -2px -2px 5px rgba(255, 255, 255, 0.14);
+  transition: all 0.3s ease;
+  z-index: 50000;
+  overflow: auto;
+}
+
+
+.option-item {
+  padding: 5px 10px;
+}
+
+.option-item:hover {
+  background-color: rgb(33, 32, 32);
+  cursor: pointer;
+}

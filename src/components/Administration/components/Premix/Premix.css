@@ -1,0 +1,180 @@
+.premixList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  border-radius: 10px;
+  max-width: 100%;
+  margin-bottom: 100vh;
+
+  @media (orientation: portrait) {
+    max-width: 100%;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--colorTextOrangeHover);
+  }
+  .premixSearch {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin: 20px auto;
+  }
+  .premixItem {
+    /* // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+
+
+
+    // input,
+    // select {
+    //   padding: 5px 10px;
+    //   text-align: center;
+    //   border-radius: 25px;
+    //   color: var(--colorTextOrangeHover);
+    //   // background-color: var(--colorTextOrangeHover);
+    // } */
+  }
+
+  .ul {
+    width: 500px;
+    padding: 0;
+    @media (orientation: portrait) {
+      width: auto;
+    }
+
+    details {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 1),
+        -2px -2px 5px rgba(255, 255, 255, 0.14);
+      color: var(--colorTextOrangeHover);
+      font-size: 14px;
+      transition: all 0.2s ease;
+      width: 100%;
+
+      @media (orientation: portrait) {
+        width: 350px;
+      }
+      &:hover {
+        scale: 1.01;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 1),
+          -3px -3px 5px rgba(255, 255, 255, 0.14);
+      }
+
+      strong {
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      summary {
+        padding-inline: 2rem;
+        position: relative;
+      }
+
+      summary::before {
+        /* // content: "▶"; */
+        position: absolute;
+        inset-inline-start: 0.5rem;
+        transition: rotate 0.3s;
+      }
+    }
+
+    .detailsPremix[open] summary::before {
+      rotate: 90deg;
+    }
+
+    .detailsPremix::details-content {
+      display: block;
+      margin-inline: 2rem;
+      block-size: 0;
+      overflow: hidden;
+      transition-property: block-size, content-visibility;
+      transition-duration: 0.5s;
+      transition-behavior: allow-discrete;
+    }
+
+    .detailsPremix[open]::details-content {
+      block-size: auto;
+      block-size: calc-size(auto);
+    }
+
+    .btnContainer {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+  }
+  .searchPremixIngredient {
+    width: 90%;
+    margin: 4px;
+  }
+
+  .input-edit-premix {
+    display: inline-block;
+    margin-right: 10px;
+    width: 60px;
+    background-color: rgb(42, 40, 40);
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+  }
+  .label-ingredient {
+    margin-bottom: 5px;
+    display: block;
+  }
+  .control {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+
+    .input,
+    .textarea {
+      width: 100%;
+      padding: 10px;
+    }
+
+    .textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+  }
+  .ingredients-search-select {
+    margin: 0 auto;
+    width: 90%;
+  }
+  .control-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .ingredient-measure {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10px;
+    line-height: 100%;
+  }
+
+  .icon-delete-ingredient {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Вирівнювання по вертикалі */
+    justify-content: center; /* Вирівнювання по горизонталі */
+    cursor: pointer; /* Змінює курсор */
+  }
+  .button-submit-prmix {
+    margin-top: 20px;
+margin-bottom: 10px;
+  }
+}

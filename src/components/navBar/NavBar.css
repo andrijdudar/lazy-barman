@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+.nav {
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  grid-template-rows: 1fr;
+  align-items: self-start;
+  justify-items: self-start;
+  align-content: start;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: last baseline; */
+  /* align-items: center; */
+  /* gap: 30px; */
+  border-bottom: 1px solid black;
+  box-shadow: 0 3px 0 rgb(57 57 57);
+  font-size: 14px;
+  grid-area: header;
+  height: 70px;
+  width: 100vw;
+  padding: 0 20px;
+  background: var(--backgroundNavBar);
+  transition: all .3s;
+  z-index: 100;
+}
+.grid-start {
+  grid-area: 1 / 1 / 2 / 2;
+  place-self: center;
+}
+
+.grid-center {
+  grid-area: 1 / 2 / 2 / 3;
+  place-self: center;
+}
+
+.grid-end {
+  grid-area: 1 / 3 / 2 / 4;
+  place-self: center;
+}
+
+.logo-text {
+  color: #ffd3a9;
+  font-family: 'Dancing Script';
+  font-size: 2.5rem;
+  text-shadow:
+    0 0 6px var(--colorTextOrangeHover),
+    0 0 16px var(--colorTextOrangeHover),
+    0 0 22px var(--colorTextOrangeHover),
+    0 0 44px var(--colorTextOrangeHover),
+    0 0 62px #f00,
+    00 11px var(--colorTextOrangeHover),
+    0 0 95px #f00;
+  animation: blink 6s infinite;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes blink {
+
+  0%,
+  18%,
+  23%,
+  50% {
+    color: #000;
+    text-shadow: none;
+  }
+
+  16%,
+  22%,
+  24%,
+  36%,
+  50%,
+  55%,
+  100% {
+    color: #fff6a9;
+    text-shadow: 0 0 6px var(--colorTextOrangeHover), 0 0 16px var(--colorTextOrangeHover), 0 0 22px var(--colorTextOrangeHover),
+      0 0 44px var(--colorTextOrangeHover), 0 0 62px #f00, 0 0 11px #f98a03, 0 0 95px #f00;
+  }
+}
