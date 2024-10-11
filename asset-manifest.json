@@ -1,16 +1,26 @@
 {
   "files": {
-    "main.css": "/lazy-barman/static/css/main.f855e6bc.css",
-    "main.js": "/lazy-barman/static/js/main.bca09e75.js",
-    "static/js/453.8c06923d.chunk.js": "/lazy-barman/static/js/453.8c06923d.chunk.js",
-    "static/media/logo.svg": "/lazy-barman/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/lazy-barman/static/css/main.ca1b2cce.css",
+    "main.js": "/lazy-barman/static/js/main.051444a7.js",
+    "static/media/fa-solid-900.ttf": "/lazy-barman/static/media/fa-solid-900.07ed6d5fa32c1d54af0f.ttf",
+    "static/media/fa-brands-400.ttf": "/lazy-barman/static/media/fa-brands-400.0ff70dcbf135d859ebf3.ttf",
+    "static/media/fa-solid-900.woff2": "/lazy-barman/static/media/fa-solid-900.93f719f4d62bfa3e748c.woff2",
+    "static/media/fa-brands-400.woff2": "/lazy-barman/static/media/fa-brands-400.bb8d5a145e22822103fb.woff2",
+    "static/media/fa-regular-400.ttf": "/lazy-barman/static/media/fa-regular-400.17a6e1aebccdbaa39e78.ttf",
+    "static/media/fa-regular-400.woff2": "/lazy-barman/static/media/fa-regular-400.bc3722686635b5f86132.woff2",
+    "static/media/istockphoto1055079680.jpg": "/lazy-barman/static/media/istockphoto1055079680.0fe2471dd02c241fa6a1.jpg",
+    "static/media/fa-v4compatibility.ttf": "/lazy-barman/static/media/fa-v4compatibility.0f6cb412603527bda691.ttf",
+    "static/media/fa-v4compatibility.woff2": "/lazy-barman/static/media/fa-v4compatibility.6cfec8414be20e2c3426.woff2",
     "index.html": "/lazy-barman/index.html",
-    "main.f855e6bc.css.map": "/lazy-barman/static/css/main.f855e6bc.css.map",
-    "main.bca09e75.js.map": "/lazy-barman/static/js/main.bca09e75.js.map",
-    "453.8c06923d.chunk.js.map": "/lazy-barman/static/js/453.8c06923d.chunk.js.map"
+    "static/media/ListIconsolid.svg": "/lazy-barman/static/media/ListIconsolid.df9761e080c4e874550440d9f30b233a.svg",
+    "static/media/delete-forever-24px.svg": "/lazy-barman/static/media/delete-forever-24px.ffbfbd3e977da16935042abeca8675df.svg",
+    "static/media/ListIconlarge.svg": "/lazy-barman/static/media/ListIconlarge.b530f0329178ba1897abdfe84b37d2ba.svg",
+    "static/media/logout-24px.svg": "/lazy-barman/static/media/logout-24px.3ef7070bd4656d6c4f5ea0ae0f455a00.svg",
+    "main.ca1b2cce.css.map": "/lazy-barman/static/css/main.ca1b2cce.css.map",
+    "main.051444a7.js.map": "/lazy-barman/static/js/main.051444a7.js.map"
   },
   "entrypoints": [
-    "static/css/main.f855e6bc.css",
-    "static/js/main.bca09e75.js"
+    "static/css/main.ca1b2cce.css",
+    "static/js/main.051444a7.js"
   ]
 }
