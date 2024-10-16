@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/lazy-barman/static/css/main.ca1b2cce.css",
-    "main.js": "/lazy-barman/static/js/main.051444a7.js",
+    "main.css": "/lazy-barman/static/css/main.8577b0c8.css",
+    "main.js": "/lazy-barman/static/js/main.50221fb2.js",
     "static/media/fa-solid-900.ttf": "/lazy-barman/static/media/fa-solid-900.07ed6d5fa32c1d54af0f.ttf",
     "static/media/fa-brands-400.ttf": "/lazy-barman/static/media/fa-brands-400.0ff70dcbf135d859ebf3.ttf",
     "static/media/fa-solid-900.woff2": "/lazy-barman/static/media/fa-solid-900.93f719f4d62bfa3e748c.woff2",
@@ -16,11 +16,11 @@
     "static/media/delete-forever-24px.svg": "/lazy-barman/static/media/delete-forever-24px.ffbfbd3e977da16935042abeca8675df.svg",
     "static/media/ListIconlarge.svg": "/lazy-barman/static/media/ListIconlarge.b530f0329178ba1897abdfe84b37d2ba.svg",
     "static/media/logout-24px.svg": "/lazy-barman/static/media/logout-24px.3ef7070bd4656d6c4f5ea0ae0f455a00.svg",
-    "main.ca1b2cce.css.map": "/lazy-barman/static/css/main.ca1b2cce.css.map",
-    "main.051444a7.js.map": "/lazy-barman/static/js/main.051444a7.js.map"
+    "main.8577b0c8.css.map": "/lazy-barman/static/css/main.8577b0c8.css.map",
+    "main.50221fb2.js.map": "/lazy-barman/static/js/main.50221fb2.js.map"
   },
   "entrypoints": [
-    "static/css/main.ca1b2cce.css",
-    "static/js/main.051444a7.js"
+    "static/css/main.8577b0c8.css",
+    "static/js/main.50221fb2.js"
   ]
 }
