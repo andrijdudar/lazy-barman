@@ -1,4 +1,7 @@
 .user-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
   width: 100%;
   max-width: 100vw;
@@ -14,6 +17,8 @@
 
   /* Контейнер для карток користувачів */
   .user-cards {
+    width: 100%;
+    max-width: 500px;
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;

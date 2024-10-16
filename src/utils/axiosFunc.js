@@ -41,6 +41,12 @@ export const getAllCategories = () => {
   return client.get('/api/categories/');
 };
 
+// Отримати інформацію про конкретний об'єкт categories за його id
+export const getCategoryById = (id) => {
+  return client.get(`/api/categories/get_category/${id}`);
+}
+
+
 // Отримати всі об'єкти tags
 export const getAllTags = () => {
   return client.get('/api/tags/');
@@ -164,6 +170,11 @@ export const patchDish = (data) => {
 // PATCH-запит для зміни полів в існуючому об'єкті ingredients
 export const patchIngredient = (data) => {
   return client.patch('/api/ingredients/patch', data);
+};
+
+//PUTCH- запит для зміни полів в існуючому об'єкті premixes
+export const patchPremix = (data) => {
+  return client.patch('/api/premixes/update', data);
 };
 
 // PATCH-запит для зміни полів в існуючому об'єкті user

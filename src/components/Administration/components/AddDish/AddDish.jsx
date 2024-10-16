@@ -3,8 +3,7 @@ import './AddDish.css';
 import { createNewDish, getAllCategories, getAllIngredients, getAllPremixes, getAllTags } from '../../../../utils/axiosFunc';
 import SearchSelect from '../../../utilsAdministration/SearchSelect/SearchSelect';
 import { convertToOptionsSelect, filteredItems } from '../../../utilsAdministration/SearchSelect/SearchUtils';
-// import IconDelete from '../../../../img/delete-forever-24px.svg';
-import IconDelete from '../../../../utils/IconDelete';
+import IconDelete from '../../../../img/delete-forever-24px.svg';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -295,7 +294,7 @@ export const AddDish = () => {
                         setSelectedIngredients(filtredIngredients);
                       }}
                     >
-                      <IconDelete />
+                      <img src={IconDelete} alt="delete" width={25} height={25} />
                     </button>
                   </div>
                 </li>
@@ -335,7 +334,7 @@ export const AddDish = () => {
                         setSelectedPremixes(filtredPremixes);
                       }}
                     >
-                      <IconDelete />
+                      <img src={IconDelete} alt="delete" width={25} height={25} />
                     </button>
                   </div>
                 </li>
@@ -367,7 +366,7 @@ export const AddDish = () => {
                         setSelectedTages(filtredTags);
                       }}
                     >
-                      <IconDelete />
+                      <img src={IconDelete} alt="delete" width={25} height={25} />
                     </button>
                   </div>
                 </li>
@@ -403,7 +402,7 @@ export const AddDish = () => {
                       //   setSelectedCategorie(filtredTags);
                       // }}
                     >
-                      <IconDelete />
+                      <img src={IconDelete} alt="delete" width={25} height={25} />
                     </button>
                   </div>
                 </li>

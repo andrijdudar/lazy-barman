@@ -63,7 +63,9 @@ export const AddCategory = () => {
       <h1 className="titleAddCategory">Додати категорію</h1>
       <form className="form-add-category" onSubmit={saveCategory}>
         <div className="field field-add-category">
-          <label className="label">Назва категорії: <span className="selectedCategory">{nameCategory}</span></label>
+          <label className="label">Назва категорії:
+            {/* <span className="selectedCategory">{nameCategory}</span> */}
+          </label>
           <div className="control">
             <input
               className="input-search input is-medium is-rounded" type="text" placeholder="Назва категорії"
@@ -72,7 +74,7 @@ export const AddCategory = () => {
             />
             <div className='searchSelectEdit'>
               <div className='label'>
-                Батьківська категорія: <span className="selectedCategory">{parentCategory.value || '---'}</span>
+                Батьківська категорія: <span className="selectedCategory">{parentCategory.name || '---'}</span>
               </div>
               <SearchSelect
                 className='searchSelect'

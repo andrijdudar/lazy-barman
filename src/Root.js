@@ -4,7 +4,6 @@ import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import App from './App';
 import StopList from './components/StopList/StopList';
 import { Menu } from './components/Menu/Menu';
-import { CocktailForm } from './components/cocktails/CocktailForm';
 import { DishDetails } from './components/Dish/components/DishDetails/DishDetails';
 import { NotFound } from './components/NotFound/NotFound.jsx';
 import { Administration } from './components/Administration/Administration.jsx';
@@ -29,7 +28,6 @@ export const Root = () => {
           <Route path="list" element={<Navigate to="/" replace={true} />} />
           <Route path="menu" element={<Menu />} />
           <Route path="detailsDish/:id" element={<DishDetails />} />
-          <Route path="newdish" element={<CocktailForm />} />
           <Route path="admin" element={<Administration />} >
             <Route path="addDish" element={<AddDish />} />
             <Route path="ingredients" element={<Ingredients />} />
@@ -48,3 +46,5 @@ export const Root = () => {
     </Router>
   );
 }
+
+export default Root;

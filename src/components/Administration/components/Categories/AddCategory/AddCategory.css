@@ -1,19 +1,32 @@
 .addCategory {
-  width: 350px;
-  margin-bottom: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  /* margin-bottom: 100vh; */
+  margin-bottom: 100px;
 
   .titleAddCategory {
     margin-bottom: 30px;
   }
+
   .form-add-category {
+    width: 100%;
+    max-width: 500px;
     border-radius: 10px;
     padding: 20px;
-    width: 100%;
     background-color: transparent;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 1),
-      -2px -2px 5px rgba(255, 255, 255, 0.14);
+    -2px -2px 5px rgba(255, 255, 255, 0.14);
+
+
   }
 
+  .input{
+    font-size:16px;
+  }
 
   .searchSelectEdit {
     margin-top: 20px;
@@ -30,6 +43,7 @@
     margin: 0 auto;
     color: var(--colorTextOrange);
   }
+
   .button-add-category {
     background-color: transparent;
     color: var(--colorTextOrange);
@@ -37,6 +51,7 @@
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 1),
       -2px -2px 5px rgba(255, 255, 255, 0.14);
+
     &:hover {
       box-shadow: 3px 3px 5px rgba(0, 0, 0, 1),
         -3px -3px 5px rgba(255, 255, 255, 0.14);

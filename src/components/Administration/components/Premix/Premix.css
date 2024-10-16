@@ -4,24 +4,29 @@
   align-items: center;
   color: #fff;
   border-radius: 10px;
-  max-width: 100%;
-  margin-bottom: 100vh;
+  width: 100%;
+  max-width: 800px;
+  /* margin-bottom: 100vh; */
+  height:100%;
+  overflow-y: auto;
 
-  @media (orientation: portrait) {
+  /* @media (orientation: portrait) {
     max-width: 100%;
-  }
+  } */
 
   h2 {
     text-align: center;
     font-size: 2rem;
     color: var(--colorTextOrangeHover);
   }
+
   .premixSearch {
     display: flex;
     justify-content: center;
     width: 90%;
     margin: 20px auto;
   }
+
   .premixItem {
     /* // display: flex;
     // justify-content: space-between;
@@ -40,11 +45,12 @@
   }
 
   .ul {
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     padding: 0;
-    @media (orientation: portrait) {
+    /* @media (orientation: portrait) {
       width: auto;
-    }
+    } */
 
     details {
       margin-bottom: 20px;
@@ -57,9 +63,9 @@
       transition: all 0.2s ease;
       width: 100%;
 
-      @media (orientation: portrait) {
+      /* @media (orientation: portrait) {
         width: 350px;
-      }
+      } */
       &:hover {
         scale: 1.01;
         box-shadow: 3px 3px 5px rgba(0, 0, 0, 1),
@@ -111,6 +117,7 @@
       margin-bottom: 10px;
     }
   }
+
   .searchPremixIngredient {
     width: 90%;
     margin: 4px;
@@ -125,14 +132,20 @@
     border-radius: 10px;
     padding: 5px;
   }
+
   .label-ingredient {
-    margin-bottom: 5px;
-    display: block;
+    /* margin-bottom: 5px; */
+    /* display: flex; */
+    font-size:16px;
+max-width: 60%;
+    line-height: 100%;
   }
+
   .control {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
 
 
@@ -147,34 +160,60 @@
       min-height: 100px;
     }
   }
+
   .ingredients-search-select {
-    margin: 0 auto;
-    width: 90%;
+    /* margin: 0 auto;
+    width: 90%; */
   }
+
   .control-end {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-between; */
+
   }
 
   .ingredient-measure {
-    display: flex;
+    margin-left:10px;
+    /* display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-right: 10px;
-    line-height: 100%;
+    line-height: 100%; */
   }
 
   .icon-delete-ingredient {
-    display: flex;
+    height: 100%;
+    /* display: flex;
     flex-direction: row;
-    align-items: center; /* Вирівнювання по вертикалі */
-    justify-content: center; /* Вирівнювання по горизонталі */
-    cursor: pointer; /* Змінює курсор */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; Змінює курсор */
   }
+
   .button-submit-prmix {
     margin-top: 20px;
-margin-bottom: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.input-edit-premix[type="number"]::-webkit-outer-spin-button,
+.input-edit-premix[type="number"]::-webkit-inner-spin-button,
+.input-edit-premix[type="number"] {
+  height: 100%;
+  font-size:16px;
+  margin: 0;
+  color: var(--colorTextOrangeHover);
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+.item_control {
+  margin-top:10px;
+  border-bottom: 1px solid #676665;
+
+  @media (orientation: portrait) {
+    display: flex;
+    flex-direction: column;
   }
 }

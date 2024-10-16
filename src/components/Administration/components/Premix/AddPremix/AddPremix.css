@@ -101,6 +101,7 @@
             margin-bottom: 5px;
             display: block;
             width: 70%;
+            font-size: 16px;
           }
 
           .input-edit-premix {
@@ -151,7 +152,7 @@
               flex-direction: row;
             }
           }
-        .seach_select_add_premix {
+        .search_select_add_premix {
           margin: 0 auto;
           width: 100%;
 
@@ -177,6 +178,7 @@
 
               .ingredient-name {
                 color: #ecf0f1;
+                font-size: 16px;
               }
               .ingredient-measure {
                 margin-right: 10px;
