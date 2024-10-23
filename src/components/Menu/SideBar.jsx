@@ -13,24 +13,37 @@ import useStore from '../../utils/Store';
 
 function SideBar() {
   const [activeCategoryIds, setActiveCategoryIds] = useState([]);
-
-  const categories = useStore((state) => state.categories);
-  const setCategories = useStore((state) => state.setCategories);
-
-  const dishesCategory = useStore((state) => state.dishesCategory);
-  const setDishesCategory = useStore((state) => state.setDishesCategory);
-
-  const setSearchDishes = useStore((state) => state.setSearchDishes);
-
-  const setTitleCategory = useStore((state) => state.setTitleCategory);
-  const dishes = useStore((state) => state.dishes);
-
-  const burger = useStore((state) => state.burger);
-  const setBurger = useStore((state) => state.setBurger);
-
   const [loading, setLoading] = useState(false);
 
+  const wrapperRef = React.useRef(null);
+  const burger = useStore((state) => state.burger);
+  const setBurger = useStore((state) => state.setBurger);
+  const categories = useStore((state) => state.categories);
+  const setCategories = useStore((state) => state.setCategories);
+  const dishes = useStore((state) => state.dishes);
+  const dishesCategory = useStore((state) => state.dishesCategory);
+  const setDishesCategory = useStore((state) => state.setDishesCategory);
+  const setSearchDishes = useStore((state) => state.setSearchDishes);
+  const setTitleCategory = useStore((state) => state.setTitleCategory);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Перевірка, щоб уникнути обробки кліку на бургер
+      const burgerElement = document.querySelector('.burger');
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target) &&
+        !burgerElement.contains(event.target)
+      ) {
+        setBurger(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [burger, setBurger]);
+
 
   useEffect(() => {
     setLoading(true);
@@ -91,7 +104,9 @@ function SideBar() {
   };
 
   return (
-    <div className={cn("wrapper",
+    <div
+      ref={wrapperRef}
+      className={cn("wrapper",
       { 'wrapper-open': burger && location.pathname === '/menu' },
     )}>
       <div className='search'>

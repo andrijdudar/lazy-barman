@@ -278,7 +278,7 @@ export function AddPremix() {
               </ul>
             ))}
           </div>
-          <button type="submit" className={cn('button', { 'is-loading': loadingSubmit })}>Відправити</button>
+          <button type="submit" className={cn('button', { 'is-loading': loadingSubmit })}>Зберегти</button>
         </form>
       )}
     </div>

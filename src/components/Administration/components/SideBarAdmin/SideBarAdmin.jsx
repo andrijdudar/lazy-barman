@@ -93,6 +93,7 @@ const ListSettings = [
 
 export function SideBarAdmin({ onLinkClick }) {
   const navigate = useNavigate();
+
   const [openDetailId, setOpenDetailId] = useState(null);
   const detailsRef = useRef([]);
 

@@ -21,7 +21,13 @@ export const Burger = () => {
     <div className={cn('grid-end', 'burger', {
       'burger-visible': location.pathname === '/menu' || location.pathname === '/admin'
     })}>
-      <input className="checkboxBurger" id="check" type="checkbox" onChange={() => setBurger(!burger)} />
+      <input
+        className="checkboxBurger"
+        id="check"
+        type="checkbox"
+        onClick={(event) => event.stopPropagation()}
+        onChange={() => setBurger(!burger)}
+      />
       <label htmlFor="check" className="menuButton">
         <span className="top"></span>
         <span className="mid"></span>
