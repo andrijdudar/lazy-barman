@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   overflow-y: auto;
-  height: 100vh;
+  height: 100dvh;
   background-color: #282c34;
 }
 
@@ -136,4 +136,6 @@
 .photo {
   width: 300px;
   border-radius: 20px;
-}/*# sourceMappingURL=CocktailForm.css.map */
+}
+
+/*# sourceMappingURL=CocktailForm.css.map */

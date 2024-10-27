@@ -8,7 +8,7 @@
   overflow-y: auto;
   height: 90vh;
   /* transition: all .5s else-in-out; */
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 /* #sidebar-wrapper {
@@ -61,7 +61,7 @@
   height: 70px;
 }
 
-.sidebar-nav li:hover>.btn-aside {
+.sidebar-nav li:hover > .btn-aside {
   color: var(--colorTextOrangeHover);
 }
 
@@ -97,7 +97,7 @@
     /* block-size: 0; */
     /* padding-block: 0; */
     /* display: none; */
-    transition: all .5s else-in-out;
+    transition: all 0.5s else-in-out;
     transition-behavior: allow-discrete;
   }
 
@@ -110,7 +110,7 @@
     /* overflow-y: auto; */
     transform: translateY(0);
     overflow-y: auto;
-    max-height: 100vh;
+    max-height: 100dvh;
     /* opacity: 0.01; */
   }
 }

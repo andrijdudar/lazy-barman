@@ -15,7 +15,7 @@
     "footer";
   height: 100dvh;
   width: 100vw;
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
 .conten {
@@ -27,14 +27,13 @@
   max-width: 100vw;
   overflow: hidden;
   grid-area: content;
-
 }
 @media (orientation: portrait) {
   .App {
     grid-template-rows: 1fr min-content;
     grid-template-areas:
-    "content"
-    "header";
+      "content"
+      "header";
 
     .conten {
       grid-area: "content";
@@ -102,9 +101,7 @@
   text-transform: capitalize;
 }
 
-
 .login_evgen {
-  height: 100vh;
+  height: 100dvh;
   padding: 100px 0;
-
 }

@@ -5,7 +5,7 @@
   align-items: center;
 
   overflow-y: auto;
-  height: 100vh;
+  height: 100dvh;
   background-color: #282c34;
 }
 
@@ -33,7 +33,6 @@
 select {
   // width: 300px;
 }
-
 
 .input-ml {
   width: 65px;
@@ -102,17 +101,17 @@ select {
 }
 
 .eror {
-  color:red;
+  color: red;
   font-size: 12px;
   font-weight: bold;
   text-align: center;
   margin-top: 5px;
 }
 select {
-// font-size: 16px;
-//   padding: 5px 35px;
-//   height: 50px;
-//   border-radius: 40px;
+  // font-size: 16px;
+  //   padding: 5px 35px;
+  //   height: 50px;
+  //   border-radius: 40px;
 }
 
 .btn {
@@ -139,7 +138,7 @@ select {
 }
 
 .file {
-  margin: 0 auto;;
+  margin: 0 auto;
 }
 
 .photo {
