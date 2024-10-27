@@ -51,7 +51,7 @@ export const AddCategory = () => {
     }
     console.log(newCategory);
     setLoading(true);
-    addCategory(newCategory).then((res) => {
+    addCategory(newCategory).then(() => {
       setLoading(false);
       navigate('/admin/categories');
     });

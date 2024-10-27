@@ -73,7 +73,7 @@ const ListSettings = [
   },
 ];
 
-export function SideBarAdmin({ onLinkClick }) {
+export function SideBarAdmin() {
   const navigate = useNavigate();
 
   const [openDetailId, setOpenDetailId] = useState(null);
@@ -157,7 +157,7 @@ export function SideBarAdmin({ onLinkClick }) {
                 className="admin-link"
                 onClick={() => {
                   // const time = setTimeout(() => {
-                  onLinkClick();
+                  // onLinkClick();
                   //   clearTimeout(time);
                   // }, 300);
                 }}

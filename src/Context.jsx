@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import PropTypes from 'prop-types';
 import { ALLDISHES, OBG, TAGS } from "./Obgects";
 
 
@@ -62,6 +63,9 @@ export const Context = ({ children }) => {
       {children}
     </AppContext.Provider>
   );
+};
+Context.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export const useMyContext = () => {

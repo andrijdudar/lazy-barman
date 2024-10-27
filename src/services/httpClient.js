@@ -96,7 +96,7 @@ export const client = {
       const formData = new FormData();
       // formData.append(data);
       for (const key in data) {
-        if (data.hasOwnProperty(key)) {
+        if (Object.prototype.hasOwnProperty.call(data, key)) {
           formData.append(key, data[key]);
         }
       }

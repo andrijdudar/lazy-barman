@@ -8,7 +8,7 @@ import { NavLink, useLocation } from "react-router-dom";
 export const NavBar = () => {
   const param = useLocation();
 
-  const getLinkClassSettings = ({ isActive }) =>
+  const getLinkClassSettings = () =>
     cn('nav-button-link-settings', 'grid-start');
   return (
 

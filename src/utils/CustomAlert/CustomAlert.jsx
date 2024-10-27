@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './CustomAlert.scss';
 
-export const showAlert = () =>  {
+export const showAlert = () => {
   const alertBox = document.getElementById('custom-alert');
   if (alertBox) {
-    alertBox.classList.add('show');
+    CustomAlert.propTypes = {
+      email: PropTypes.string.isRequired,
+    };
   }
+
 }
 
-export function CustomAlert({email}) {
+export function CustomAlert({ email }) {
 
   const hideAlert = () => {
     const alertBox = document.getElementById('custom-alert');
@@ -45,17 +49,17 @@ export function CustomAlert({email}) {
         {/* <p>{massage || ''}</p> */}
         <h1>Дякуємо за реєстрацію. </h1>
         <h2 className='content_alert'>На ваш email відправлено лист для підтвердження та посилання на наш телеграм бот.</h2>
-       <div className='container-alert-buttons'>
+        <div className='container-alert-buttons'>
           {/* <a href={`http://${JSON.parse(localStorage.getItem('user')).email} || 'gmail.com`} id="close-alert" className="email-button">
             {buttonText || ''}
           </a> */}
-           <a href={`http://${email}`} id="close-alert" className="email-button">
+          <a href={`http://${email}`} id="close-alert" className="email-button">
             Перейти на поштy
           </a>
           <a href='#/' id="continue-alert" className="email-button">
             Продовжити
           </a>
-       </div>
+        </div>
       </div>
     </div >
   );

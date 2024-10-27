@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import './Login.scss';
 import cn from 'classnames';
@@ -147,7 +146,7 @@ export const Login = () => {
         } else {
           console.error("Помилка при виконанні запиту:", error.message);
         }
-      }).finally((response) => {
+      }).finally(() => {
         setLoading(false);
         const time = setTimeout(() => {
           showAlert();

@@ -1,6 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 // import { getCurrentUser } from '../../../utils/axiosFunc';
 // import useStoreAuth from '../../../utils/StoreAuth';
 
@@ -27,6 +27,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   ) : (
       <Navigate to="/login" state={{ from: location }} replace />
   );
+};
+PrivateRoute.propTypes = {
+  component: PropTypes.elementType.isRequired,
 };
 
 export default PrivateRoute;

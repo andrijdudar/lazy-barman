@@ -45,6 +45,7 @@ export const CreateUser = () => {
       navigate('/admin/users');
 
     } catch (error) {
+      console.error(error);
       setErrorMessage('Error creating user');
     }
   };
@@ -66,7 +67,7 @@ export const CreateUser = () => {
           />
         </label>
         <label>
-          Ім'я:
+          <span>Ім&apos;я:</span>
           <input
             className='input-search input'
             type="text"

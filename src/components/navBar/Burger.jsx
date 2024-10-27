@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import useStore from "../../utils/Store";
 import "./Burger.scss";
 import cn from "classnames";
-import { useLocation, useNavigate } from "react-router-dom";
-import axios from 'axios';
+import { useLocation } from "react-router-dom";
+// import axios from 'axios';
 
 
 export const Burger = () => {
   const location = useLocation();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const burger = useStore((state) => state.burger);
   const setBurger = useStore((state) => state.setBurger);
 
@@ -20,18 +20,18 @@ export const Burger = () => {
     }
   }, [burger]);
 
-  const handleLogoutSuccess = async () => {
-    await axios({
-      method: 'POST',
-      url: 'https://marked-addia-ago-0dd6d371.koyeb.app/api/auth/logout',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('refresh_token')}`,
-      },
-    });
-    localStorage.clear();
-    navigate('/');
-  };
+  // const handleLogoutSuccess = async () => {
+  //   await axios({
+  //     method: 'POST',
+  //     url: 'https://marked-addia-ago-0dd6d371.koyeb.app/api/auth/logout',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${localStorage.getItem('refresh_token')}`,
+  //     },
+  //   });
+  //   localStorage.clear();
+  //   navigate('/');
+  // };
 
   return (
     <div className={cn('grid-end')}>

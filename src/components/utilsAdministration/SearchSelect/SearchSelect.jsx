@@ -1,5 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types'; // Додано імпорт PropTypes
+
 import './SearchSelect.scss';
 import cn from 'classnames';
 // import { Link } from 'react-router-dom';
@@ -10,7 +11,15 @@ import cn from 'classnames';
 //   setSearchIngredients(filteredItems(ingredients, options));
 // }, [ingredients]);
 
-const SearchSelect = ({ options, updateOptions, placeholder, selectOpen = true, size = 'is-medium', path, onSelect = false, inputValue = (e) => {} }) => {
+const SearchSelect = ({
+  options,
+  updateOptions,
+  placeholder,
+  selectOpen = true,
+  size = 'is-medium',
+  onSelect = false,
+  inputValue = () => { }
+}) => {
   const [selected, setSelected] = useState('');
   const [toggle, setToggle] = useState(false);
   // const [error, setError] = useState(false);
@@ -28,7 +37,7 @@ const SearchSelect = ({ options, updateOptions, placeholder, selectOpen = true, 
     inputValue(event.target.value);
     const filteredOptions = options.filter((value) => value.value.toLowerCase().includes(event.target.value.toLowerCase()));
     setFiltredOptions(filteredOptions);
-    // updateOptions(filteredOptions);
+    updateOptions(filteredOptions);
 
     // if (filteredOptions.length === 0) {
     //   setError(true);
@@ -97,7 +106,7 @@ const SearchSelect = ({ options, updateOptions, placeholder, selectOpen = true, 
                 setToggle(false);
                 clearTimeout(wait);
               }, 200);
-              if (!!onSelect) {
+              if (onSelect) {
                 setSelected('');
               }
             }}
@@ -122,12 +131,12 @@ const SearchSelect = ({ options, updateOptions, placeholder, selectOpen = true, 
       </div>
 
       {/* {error && ( */}
-        {/* <p className="help is-danger is-size-6"> */}
-          {/* Такого значення не знайдено */}
-          {/* <Link to={path} type='button' className='button is-small is-danger'>
+      {/* <p className="help is-danger is-size-6"> */}
+      {/* Такого значення не знайдено */}
+      {/* <Link to={path} type='button' className='button is-small is-danger'>
             Добавити нове
           </Link> */}
-        {/* </p> */}
+      {/* </p> */}
       {/* )} */}
       {/* {errorValueIsHeve && <p className="help is-danger is-size-6">Таке значення вже вибрано</p>} */}
 
@@ -170,5 +179,22 @@ const SearchSelect = ({ options, updateOptions, placeholder, selectOpen = true, 
         </div>
       )} */}
     </div>);
+};
+// Додано валідацію PropTypes
+SearchSelect.propTypes = {
+  options: PropTypes.array.isRequired,
+  updateOptions: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  selectOpen: PropTypes.bool,
+  size: PropTypes.string,
+  onSelect: PropTypes.func,
+  inputValue: PropTypes.func,
+};
+
+SearchSelect.defaultProps = {
+  selectOpen: true,
+  size: 'is-medium',
+  onSelect: () => { },
+  inputValue: () => { },
 };
 export default SearchSelect;

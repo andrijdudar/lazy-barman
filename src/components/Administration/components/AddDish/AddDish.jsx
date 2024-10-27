@@ -154,7 +154,7 @@ export const AddDish = () => {
         setSuccessMessage('Страву успішно змінено!');
         setLoadingSubmit(false);
         navigate('/detailsDish/' + res.id);
-      }).catch((error) => {
+      }).catch(() => {
         setLoadingSubmit(false);
         setErrorMessage('Помилка при редагуванні страви');
       });
@@ -184,7 +184,7 @@ export const AddDish = () => {
         }
       })
 
-      .catch((error) => {
+      .catch(() => {
         setLoadingSubmit(false);
         setErrorMessage('Помилка при додаванні страви');
       })

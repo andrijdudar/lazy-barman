@@ -92,36 +92,36 @@ export function DishForm() {
   };
 
 
-  const removeInput = (index, event) => {
+  const removeInput = (index) => {
     const updatedIngredients = [...ingredients];
     updatedIngredients.splice(index, 1);
     setIngredients(updatedIngredients);
   };
   //#endregion
 
-  const makeCocktail = () => {
-    // const cocktail = {
-    //   "id": cocktailList.length + 1,
-    //   "user": author,
-    //   "nameDish": nameDish,
-    //   "photo": photo,
-    //   "categorys": category,
-    //   "cocktailtagsMethod": tags,
-    //   "ice": ice,
-    //   "ingredients": [...ingredients],
-    //   "description": description
-    // }
-    const dish = {
-      // dish_name: str
-      // description: str
-      // ingredients: str
-      // tags: list[str]
-      // category: str(можна вибрати зі списку)
-      // price: int
-      // file: UploadFile = File()
-    }
-    return dish;
-  };
+  // const makeCocktail = () => {
+  //   // const cocktail = {
+  //   //   "id": cocktailList.length + 1,
+  //   //   "user": author,
+  //   //   "nameDish": nameDish,
+  //   //   "photo": photo,
+  //   //   "categorys": category,
+  //   //   "cocktailtagsMethod": tags,
+  //   //   "ice": ice,
+  //   //   "ingredients": [...ingredients],
+  //   //   "description": description
+  //   // }
+  //   const dish = {
+  //     // dish_name: str
+  //     // description: str
+  //     // ingredients: str
+  //     // tags: list[str]
+  //     // category: str(можна вибрати зі списку)
+  //     // price: int
+  //     // file: UploadFile = File()
+  //   }
+  //   return dish;
+  // };
 
   const reset = () => {
     setAuthor('Автор');
@@ -145,7 +145,7 @@ export function DishForm() {
 
   const hendleSubmit = (event) => {
     event.preventDefault();
-    const cocktail = makeCocktail();
+    // const cocktail = makeCocktail();
 
     const checkError = (input, valuee) => {
       if (!input || input === valuee) {

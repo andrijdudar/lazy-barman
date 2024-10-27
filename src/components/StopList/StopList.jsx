@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import './StopList.scss';
 import useStore from '../../utils/Store';
@@ -76,8 +75,8 @@ const StopList = () => {
             <div className='stoplistKichen'>
               <h2>Кухня</h2>
               <ul>
-                {fewDishes.map((dish, index) => (
-                  <li className='item'>
+                {fewDishes.map((dish) => (
+                  <li key={dish.id} className='item'>
                     <span>{dish.dish_name}</span><button className='btn-x'><i className='icon delete'></i></button>
                   </li>
                 ))}
@@ -86,8 +85,8 @@ const StopList = () => {
             <div className='stoplist-bar'>
               <h2 className='sub_title'>Бар</h2>
               <ul>
-                {fewDishes.map((dish, index) => (
-                  <li className='item'>
+                {fewDishes.map((dish) => (
+                  <li key={dish.id} className='item'>
                     <span>{dish.dish_name}</span><button className='btn-x'><i className='icon delete'></i></button>
                   </li>
                 ))}

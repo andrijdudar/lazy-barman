@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { getAllIngredients, patchIngredient } from '../../../../utils/axiosFunc';
 import './Ingredients.scss';

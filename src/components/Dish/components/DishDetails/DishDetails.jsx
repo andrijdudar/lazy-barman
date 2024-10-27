@@ -43,7 +43,7 @@ export function DishDetails() {
         <div className='item_value'>
           {dish.dish_ingredients && dish.dish_ingredients.length > 0 ? (
             <ul>
-              {Array.isArray(dish.dish_ingredients) && dish.dish_ingredients.map((ingredient, index) => (
+              {Array.isArray(dish.dish_ingredients) && dish.dish_ingredients.map((ingredient) => (
                 <li key={ingredient.ingredient_id}>
                   {ingredient.ingredient.name} - {ingredient.quantity + ingredient.ingredient.measure}
                 </li>

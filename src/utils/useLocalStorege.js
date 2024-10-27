@@ -11,6 +11,7 @@ export function useLocalStorage(key, initialValue) {
     try {
       return JSON.parse(data);
     } catch (error) {
+      console.error('Error parsing data:',error);
       return initialValue;
     }
   });

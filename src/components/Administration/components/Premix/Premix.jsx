@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import cn from 'classnames';
 import { deletePremix, getAllIngredients, getAllPremixes, patchPremix } from '../../../../utils/axiosFunc';

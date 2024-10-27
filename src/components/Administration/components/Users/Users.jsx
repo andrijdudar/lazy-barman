@@ -123,7 +123,7 @@ export function Users() {
                     placeholder="Логін"
                   />
                 </label>
-                <label>Ім'я:
+                <label><span>Ім&apos;я:</span>
                   <input
                     className='input-search input'
                     type="text"
@@ -202,7 +202,7 @@ export function Users() {
               <>
                 <p className='edit-user-lable'><strong>ID:</strong> {user.id}</p>
                 <p className='edit-user-lable'><strong>Логін:</strong> {user.username}</p>
-                <p className='edit-user-lable'><strong>Ім'я:</strong> {user.first_name}</p>
+                  <p className='edit-user-lable'><strong>Ім&apos;я:</strong> {user.first_name}</p>
                 <p className='edit-user-lable'><strong>Прізвище:</strong> {user.last_name}</p>
                 <p className='edit-user-lable'><strong>Email:</strong> {user.email}</p>
                 <p className='edit-user-lable'><strong>Інформація:</strong> {user.information}</p>
