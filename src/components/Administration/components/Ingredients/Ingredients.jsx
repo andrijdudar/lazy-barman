@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { getAllIngredients, patchIngredient } from '../../../../utils/axiosFunc';
-import './Ingredients.css';
+import './Ingredients.scss';
 import SearchSelect from '../../../utilsAdministration/SearchSelect/SearchSelect';
 import { Loading } from '../../../../utils/Loading/Loading';
 import { convertToOptionsSelect, filteredItems } from '../../../utilsAdministration/SearchSelect/SearchUtils';
@@ -60,7 +60,7 @@ export function Ingredients() {
         console.log(err);
         const LS = JSON.parse(localStorage.getItem('ingredients'));
         setIngredients(LS);
-        alert('Помилка при завантаженні інгредієнтів');
+        console.log('Помилка при завантаженні інгредієнтів');
       })
       .finally(() => {
         console.log('інгредієнти завантажені');
@@ -111,17 +111,19 @@ export function Ingredients() {
                 handleToggle(ingredient.id);
               }}>{ingredient.name}</summary>
               {!editIngredient && (
-                <ul>
+                <ul className='edit_ingredient_ul'>
                   <li className='ingredientsLi'><strong>Кількість:</strong>{ingredient.amount}{ingredient.measure}</li>
                   <li className='ingredientsLi'><strong>Сума:</strong> {ingredient.suma}</li>
                   <li className='ingredientsLi'><strong>Мінімальний залишок:</strong> {ingredient.stock_minimum} {ingredient.measure}</li>
-                  <li className='ingredientsLi'><strong>Мінімально прийнятний залишок:</strong> {ingredient.min_acceptable} {ingredient.measure}</li>
+                  <li className='ingredientsLi'>
+                    <strong>Мінімально прийнятний залишок:</strong>
+                    <span>{ingredient.min_acceptable}{ingredient.measure}</span></li>
                   <li className='ingredientsLi'><strong>Максимальний залишок:</strong> {ingredient.stock_maximum} {ingredient.measure}</li>
                   <li className='ingredientsLi'><strong>Стандартний контейнер:</strong> {ingredient.standart_container} {ingredient.measure}</li>
                   <li className='ingredientsLi'><strong>Використовується:</strong> {ingredient.using ? 'Так' : 'Ні'}</li>
                   <li className='ingredientsLi'><strong>Постачальник ID:</strong> {ingredient.provider_id ? ingredient.provider_id : 'Немає'}</li>
                   <button
-                    className='button'
+                    className='button button_edit_ingredient'
                     type='button'
                     onClick={() => setEditIngredient(!editIngredient)}
                   >
@@ -131,7 +133,7 @@ export function Ingredients() {
               )}
               {editIngredient && (
                 <form onSubmit={handleSubmit}>
-                  <ul>
+                  <ul className='edit_ingredient_ul'>
                     <li className='ingredientsLi'>
                       <div><strong>Одиниці вимірювання:</strong></div>
                       <input
@@ -210,7 +212,17 @@ export function Ingredients() {
                       />
                     </li>
                   </ul>
-                  <button className='button' type='submit'>Відправити</button>
+                  <div className='buttons_container_edit_ingredient'>
+                    <button className='button' type='submit'>Зберегти</button>
+                    <button
+                      className='button'
+                      type='button'
+                      onClick={() => setEditIngredient(false)}
+                    >
+                      Скасувати
+
+                    </button>
+                  </div>
                 </form>
               )}
             </details>

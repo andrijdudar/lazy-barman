@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { useEffect, useState } from 'react';
-import './MenuCards.css';
+import './MenuCards.scss';
 import { getAllDishes, patchDish } from '../../utils/axiosFunc';
 import { Link } from 'react-router-dom';
 import listIcon from '../../img/ListIconsolid.svg';
@@ -60,6 +60,8 @@ export const MenuCards = () => {
     setCurrentCardId(card.id);
   };
 
+
+
   return (
     <div className="menuCards">
       {loader ? (
@@ -106,18 +108,13 @@ export const MenuCards = () => {
                           <h2>Склад:</h2>
                           <ul>
                             {card.dish_ingredients.map((item, index) => (
-                              <div key={index}>
-                                <li >{`${item.ingredient.name} - ${item.quantity} ${item.ingredient.measure}`}</li>
-                                <hr />
-                              </div>
+                              <li key={item.ingredient_id || index} >{`${item.ingredient.name} - ${item.quantity} ${item.ingredient.measure}`}<hr /></li>
+
                             ))}
                           </ul>
                           <ul>
-                            {card.dish_premixes.map((item, index) => (
-                              <>
-                                <li key={index}>{`${item.premix.name} - ${item.quantity}`}</li>
-                                <hr />
-                              </>
+                            {card.dish_premixes.map((item) => (
+                                <li key={item.premix_id}>{`${item.premix.name} - ${item.quantity}`}<hr /></li>
                             ))}
                           </ul>
                         </li>
@@ -132,7 +129,7 @@ export const MenuCards = () => {
                           Детальніше
                         </Link>
 
-                        {!!card.dish_to_sold ? (
+                        {card.need_to_sold ? (
                           <button
                             className="button is-success is-outlined is-rounded is-hover"
                             onClick={() => patchDish({ id: card.id, dish_to_sold: false })}
@@ -145,7 +142,7 @@ export const MenuCards = () => {
                           >
                             Додати в пріоритет
                           </button>)}
-                        {!!card.stop_list ? (<button
+                        {card.runing_out ? (<button
                           className="button is-danger is-outlined is-rounded is-hover"
                           onClick={() => patchDish({ id: card.id, stop_list: false })}
                         >

@@ -1,13 +1,13 @@
 .categoryList {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  align-content: center;
+  // align-content: center;
   width: 100%;
-  /* max-width: 550px; */
-  /* margin: 0 auto; */
-  /* margin-bottom: 100vh; */
+  max-width: 600px;
+  height: 100%;
+  // margin-bottom: 100vh;
+  overflow-y: auto;
 
   .loaderContainer {
     display: flex;

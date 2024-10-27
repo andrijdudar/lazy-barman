@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './CustomAlert.css';
+import './CustomAlert.scss';
 
 export const showAlert = () =>  {
   const alertBox = document.getElementById('custom-alert');

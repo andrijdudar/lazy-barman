@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import './SideBar.css';
+import './SideBar.scss';
 import SearchSelect from '../utilsAdministration/SearchSelect/SearchSelect';
 import cn from 'classnames';
 import { getAllCategories } from '../../utils/axiosFunc';

@@ -5,7 +5,7 @@ import { deletePremix, getAllIngredients, getAllPremixes, patchPremix } from '..
 import { Loading } from '../../../../utils/Loading/Loading';
 import SearchSelect from '../../../utilsAdministration/SearchSelect/SearchSelect';
 import { convertToOptionsSelect, filteredItems } from '../../../utilsAdministration/SearchSelect/SearchUtils';
-import './Premix.css';
+import './Premix.scss';
 // import './AddPremix/AddPremix.css';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import useStore from '../../../../utils/Store';

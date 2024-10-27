@@ -1,38 +1,21 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import './AddDish.css';
-import { createNewDish, getAllCategories, getAllIngredients, getAllPremixes, getAllTags } from '../../../../utils/axiosFunc';
+import './AddDish.scss';
+import { createNewDish, getAllCategories, getAllIngredients, getAllPremixes, getAllTags, getCategoryById, getDishById, patchDish, updatePhoto } from '../../../../utils/axiosFunc';
 import SearchSelect from '../../../utilsAdministration/SearchSelect/SearchSelect';
 import { convertToOptionsSelect, filteredItems } from '../../../utilsAdministration/SearchSelect/SearchUtils';
 import IconDelete from '../../../../img/delete-forever-24px.svg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import classNames from 'classnames';
+import { Loading } from '../../../../utils/Loading/Loading';
 
-
-// const testDishe = {
-//   "dish_name": "string",
-//   "description": "string",
-//   "ingredients": [
-//     {
-//       "id": 0,
-//       "name": "string",
-//       "quantity": 0
-//     }
-//   ],
-//   "premixes": [
-//     {
-//       "id": 0,
-//       "name": "string",
-//       "quantity": 0
-//     }
-//   ],
-//   "tags": [
-//     "string"
-//   ],
-//   "category": "string",
-//   "price": 0
-// }
 
 export const AddDish = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const [editDishId, setEditDishId] = useState(id);
+  const [loading, setLoading] = useState(true);
+
+
   const [ingredients, setIngredients] = useState([]);
   const [premixes, setPremixes] = useState([]);
   const [tages, setTages] = useState([]);
@@ -43,50 +26,81 @@ export const AddDish = () => {
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [selectedPremixes, setSelectedPremixes] = useState([]);
   const [selectedTages, setSelectedTages] = useState([]);
-  const [selectedCategorie, setSelectedCategorie] = useState([]);
+  const [selectedCategorie, setSelectedCategorie] = useState({});
   const [price, setPrice] = useState('');
-
-
-
-
+  const [photo, setPhoto] = useState('');
+  const [errorPhoto, setErrorPhoto] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
+
 
   useEffect(() => {
-    getAllIngredients()
-      .then((data) => {
-        setIngredients(data);
-        console.log('data:', data)
+    const getData = async () => {
+      try {
+        const [ingredientsRes, premixesRes, tagesRes, categoriesRes] = await Promise.all([
+          getAllIngredients(),
+          getAllPremixes(),
+          getAllTags(),
+          getAllCategories(),
+        ]);
 
-      })
-      .catch((error) => console.log(error));
-
-    getAllPremixes()
-      .then((data) => {
-        setPremixes(data)
-        console.log('data:', data)
-      })
-      .catch((error) => console.log(error));
-
-    getAllTags()
-      .then((data) => {
-        setTages(data)
-        console.log('data:', data)
-      })
-      .catch((error) => {
-        console.log(error);
-        setTages([]);
-      });
-
-    getAllCategories()
-      .then((data) => {
-        const categoreis = data.filter((item) => item.child === false);
+        const categoreis = categoriesRes.filter((item) => item.child === false);
         setCategories(categoreis);
-        console.log('data:', data)
-      })
-      .catch((error) => console.log(error));
+        setIngredients(ingredientsRes);
+        setPremixes(premixesRes);
+        setTages(tagesRes);
 
-  }, []);
+        console.log('categories:', categoriesRes);
+        console.log('ingredients:', ingredientsRes);
+        console.log('premix:', premixesRes);
+        console.log('tags:', tagesRes);
+
+      } catch (error) {
+        setErrorMessage('Помилка при завантаженні даних');
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getData();
+
+
+    if (editDishId) {
+      getDishById(editDishId).then((response) => {
+        console.log('response:', response);
+
+        setDishName(response.dish_name);
+        setDescription(response.description);
+        setSelectedIngredients(response.dish_ingredients.map((item) => {
+          return {
+            id: item.ingredient_id,
+            name: item.ingredient.name,
+            quantity: item.quantity,
+          };
+        }));
+        setSelectedPremixes(response.dish_premixes.map((item) => {
+          return {
+            id: item.premix_id,
+            name: item.premix.name,
+            quantity: item.quantity,
+          };
+        }));
+        setSelectedTages(response.tags.map((item) => item.name_tag));
+        setPrice(response.price);
+        setPhoto(response.image_url);
+        getCategoryById(response.category_id)
+          .then((category) => setSelectedCategorie(category));
+      })
+        .catch((error) => {
+          console.error(error);
+          setErrorMessage('Помилка при завантаженні страви');
+        })
+        .finally(() => {
+          setLoading(false);
+        })
+    }
+  }, [editDishId]);
 
   const stopEditing = () => {
     setDishName('');
@@ -98,36 +112,103 @@ export const AddDish = () => {
     setPrice(null);
   };
 
-  // const handleChange = (e) => {
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoadingSubmit(true);
+
+
 
     const dataToSend = {
       dish_name: dishName,
       description: description || null,
       ingredients: selectedIngredients.length ? selectedIngredients : null,
       premixes: selectedPremixes.length ? selectedPremixes : null,
-      tags: selectedTages.length ? selectedTages : ['страва'],
-      category_id: selectedCategorie.id ,
+      tags: selectedTages,
+      category_id: selectedCategorie.id,
       price: price || '0',
     };
-    console.log(selectedCategorie, selectedCategorie.id);
-    console.log(dataToSend);
-    createNewDish(dataToSend)
-      .then((res) => {
-        console.log(res);
+
+    if (editDishId) {
+      const dataToSend = {
+        id: editDishId,
+        dish_name: dishName,
+        description: description || ' ',
+        ingredients: selectedIngredients.map((item) => {
+          return {
+            id: item.id,
+            quantity: item.quantity,
+          };
+        }) || [],
+        premixes: selectedPremixes.map((item) => {
+          return {
+            id: item.id,
+            quantity: item.quantity,
+          };
+        }),
+        tags: selectedTages,
+        category: selectedCategorie.name,
+        price: price || '0',
+      };
+      patchDish(dataToSend).then((res) => {
         stopEditing();
-        setSuccessMessage('Страву успішно додано!');
+        setSuccessMessage('Страву успішно змінено!');
+        setLoadingSubmit(false);
         navigate('/detailsDish/' + res.id);
-      })
-      .catch((error) => {
-        console.log(error);
-        setErrorMessage('Помилка при додаванні страви');
+      }).catch((error) => {
+        setLoadingSubmit(false);
+        setErrorMessage('Помилка при редагуванні страви');
       });
 
+      return;
+    }
+
+    createNewDish(dataToSend)
+      .then((res) => {
+        if (photo) {
+          const formData = new FormData();
+          formData.append('id', res.id); // Додаємо id до даних
+          formData.append('file', photo); // Додаємо файл до даних
+          updatePhoto(formData).then((res) => {
+            stopEditing();
+            setSuccessMessage('Страву успішно додано!');
+            setLoadingSubmit(false);
+            navigate('/detailsDish/' + res.id);
+          });
+
+        } else {
+          stopEditing();
+          setSuccessMessage('Страву успішно додано!');
+          setLoadingSubmit(false);
+          setEditDishId(null);
+          navigate('/detailsDish/' + res.id);
+        }
+      })
+
+      .catch((error) => {
+        setLoadingSubmit(false);
+        setErrorMessage('Помилка при додаванні страви');
+      })
+
   };
+
+  //#region Photo
+  const handlePhoto = (event) => {
+    const file = event.target.files && event.target.files[0];
+    if (file && file.type !== 'image/jpeg') {
+      setErrorPhoto('Фото повинно бути у форматі jpeg або jpg');
+      const wait = setTimeout(() => {
+        setErrorPhoto('');
+        clearTimeout(wait);
+      }, 10000);
+    }
+
+    if (file && file.type === 'image/jpeg') {
+      setPhoto(file);
+      console.log(file);
+      // Тут ви можете виконати додаткові дії з обраним файлом
+    }
+  };
+  //#endregion
 
   // #region  Ingredients
   const handleIngredientQuantityChange = (ingredientId, quantity = 1) => {
@@ -174,7 +255,7 @@ export const AddDish = () => {
     const newPremix = {
       id: selectedOption.id,
       name: selectedOption.value,
-      quantity: selectedOption.quantity || 0,
+      quantity: selectedOption.quantity || 1,
     };
     const premixTrue = !selectedPremixes.find((item) => item.id === newPremix.id);
     if (premixTrue) {
@@ -192,14 +273,10 @@ export const AddDish = () => {
 
   // #region  Tages
   const handleTagesSelect = (selectedOption) => {
-    const newTag = {
-      id: selectedOption.id,
-      name: selectedOption.value,
-      quantity: selectedOption.quantity || 0,
-    };
+    const newTag = selectedOption.value;
     // const tagTrue = !selectedTages.find((item) => item.id === newTag.id);
     // if (selectedTages.length < 1) {
-    setSelectedTages([newTag]);
+    setSelectedTages((prevSelected) => [...prevSelected, newTag]);
     // }
 
   };
@@ -207,6 +284,8 @@ export const AddDish = () => {
   const updateOptionsTages = useCallback((options) => {
     setTages(filteredItems(tages, options));
   }, [tages]);
+
+  const [inputValueTag, setInputValueTag] = useState('');
 
   const optionsTages = useMemo(() => convertToOptionsSelect(tages), [tages]);
   // #endregion
@@ -216,11 +295,11 @@ export const AddDish = () => {
     const newCategory = {
       id: selectedOption.id,
       name: selectedOption.value,
-      quantity: selectedOption.quantity || 0,
+      // quantity: selectedOption.quantity || 0,
     };
     // const categoryTrue = !selectedCategorie.find((item) => item.id === newCategory.id);
     // if (categoryTrue) {
-      setSelectedCategorie(newCategory);
+    setSelectedCategorie(newCategory);
     // setSelectedCategorie(newCategory);
     // }
   };
@@ -232,13 +311,15 @@ export const AddDish = () => {
   const optionsCategories = useMemo(() => convertToOptionsSelect(categories), [categories]);
   // #endregion
 
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="AddDish">
       {successMessage && <p className="success-message">{successMessage}</p>}
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
       <form className='formAddDish' onSubmit={handleSubmit}>
-        <h1>Додати нову страву</h1>
-        <label className='label'>
+        {editDishId ? <h1>Редагування страви</h1> : <h1>Додати нову страву</h1>}
+        <label className='label_addDish'>
           Назва:
           <div className='inputContainer'>
             <input
@@ -250,7 +331,35 @@ export const AddDish = () => {
             />
           </div>
         </label>
-        <label className='label'>
+
+        <div className="file is-medium is-boxed ">
+          <label className="file-label">
+            <input
+              className="file file-input"
+              type="file"
+              name="resume"
+              onChange={handlePhoto}
+            />
+            {photo && (
+              <div>
+                {/* <img className='photo' src={URL.createObjectURL(photo)} alt="Картинка" /> */}
+                {/* <img className='photo' src={photo} alt="Картинка" /> */}
+              </div>
+            )}
+            {!photo &&
+              <span className="file-cta">
+                <span className="file-icon">
+                  <i className="fas fa-upload"></i>
+                </span>
+                <span className="file-label">
+                  Фото
+                </span>
+              </span>}
+            {errorPhoto &&
+              <p className="help is-danger is-size-6">{errorPhoto}</p>}
+          </label>
+        </div>
+        <label className='label_addDish'>
           Опис:
           <div className='control inputContainer'>
             <textarea
@@ -261,7 +370,7 @@ export const AddDish = () => {
             />
           </div>
         </label>
-        <div className='label'>
+        <div className='label_addDish'>
           Інгредієнти:
           <div className='inputContainer'>
             <SearchSelect
@@ -275,7 +384,7 @@ export const AddDish = () => {
             {selectedIngredients.map((ingredient) => (
               <ul key={ingredient.id} className='field'>
                 <li className='ingredient-li-container'>
-                  <p className='label capitalize'>{ingredient.name}</p>
+                  <p className='label_addDish_item'>{ingredient.name}</p>
                   <div className='input-container ingredient-li'>
                     <input
                       type="number"
@@ -302,7 +411,7 @@ export const AddDish = () => {
             ))}
           </div>
         </div>
-        <div className='label'>
+        <div className='label_addDish'>
           Премікси:
           <div className='inputContainer'>
             <SearchSelect
@@ -316,7 +425,7 @@ export const AddDish = () => {
             {selectedPremixes.map((premix) => (
               <ul key={premix.id} className='field'>
                 <li className='ingredient-li-container'>
-                  <p className='label capitalize'>{premix.name}</p>
+                  <p className='label_addDish_item'>{premix.name}</p>
                   <div className='input-container ingredient-li'>
                     <input
                       type="number"
@@ -342,27 +451,43 @@ export const AddDish = () => {
             ))}
           </div>
         </div>
-        <div className='label'>
+        <div className='label_addDish'>
           Теги:
           <div className='inputContainer'>
-            <SearchSelect
-              options={optionsTages}
-              updateOptions={updateOptionsTages}
-              placeholder='Пошук тегів...'
-              selectOpen={true}
-              path='/'
-              onSelect={handleTagesSelect}
-            />
-            {selectedTages.map((tag) => (
-              <ul key={tag.id} className='field'>
+            <div className='container_searchSelect_tag'>
+              <SearchSelect
+                options={optionsTages}
+                updateOptions={updateOptionsTages}
+                placeholder='Пошук тегів...'
+                selectOpen={true}
+                path='/'
+                onSelect={handleTagesSelect}
+                inputValue={(value) => setInputValueTag(value)}
+              />
+              {(inputValueTag) &&
+                <button
+                  type="button"
+                  className='button button-add-tag'
+                  onClick={() => {
+                    setSelectedTages([...selectedTages, inputValueTag]);
+                    setInputValueTag('');
+                  }}
+                >
+                  Додати новий тег
+                  {/* <svg width={20} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0Z" /><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7Zm-1-5C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10 -4.48-10-10-10Zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8 -3.59 8-8 8Z" /></svg> */}
+                </button>}
+            </div>
+
+            {selectedTages.map((tag, index) => (
+              <ul key={index} className='field'>
                 <li className='ingredient-li-container'>
-                  <p className='label capitalize'>{tag.name}</p>
+                  <p className='label_addDish_item'>{tag}</p>
                   <div className='ingredient-li'>
                     <button
                       type="button"
                       className='button button-del-ingredeint'
                       onClick={() => {
-                        const filtredTags = selectedTages.filter((item) => item.id !== tag.id);
+                        const filtredTags = selectedTages.filter((item) => item !== tag);
                         setSelectedTages(filtredTags);
                       }}
                     >
@@ -374,8 +499,8 @@ export const AddDish = () => {
             ))}
           </div>
         </div>
-        <div className='label'>
-          Категорії:
+        <div className='label_addDish'>
+          Категорія:
           <div className='inputContainer'>
             <SearchSelect
               options={optionsCategories}
@@ -386,21 +511,21 @@ export const AddDish = () => {
               onSelect={handleCategoriesSelect}
             />
             {/* {selectedCategorie.map((category) => ( */}
-            {selectedCategorie &&
+            {selectedCategorie.name &&
               <ul className='field'>
                 <li className='ingredient-li-container'>
-                  <p className='label capitalize'>{selectedCategorie.name}</p>
+                  <p className='label_addDish_item'>{selectedCategorie.name}</p>
                   <div className='ingredient-li'>
                     <button
                       type="button"
                       className='button button-del-ingredeint'
                       onClick={() => {
-                        setSelectedCategorie(null);
+                        setSelectedCategorie([]);
                       }}
-                      // onClick={() => {
-                      //   const filtredTags = selectedCategorie.filter((item) => item.id !== category.id);
-                      //   setSelectedCategorie(filtredTags);
-                      // }}
+                    // onClick={() => {
+                    //   const filtredTags = selectedCategorie.filter((item) => item.id !== category.id);
+                    //   setSelectedCategorie(filtredTags);
+                    // }}
                     >
                       <img src={IconDelete} alt="delete" width={25} height={25} />
                     </button>
@@ -410,7 +535,7 @@ export const AddDish = () => {
             {/* ))} */}
           </div>
         </div>
-        <label className='label'>
+        <label className='label_addDish'>
           Ціна:
           <div className='inputContainer'>
             <input
@@ -422,7 +547,11 @@ export const AddDish = () => {
             />
           </div>
         </label>
-        <button type="submit" className="button" onClick={(e) => handleSubmit(e)}>Додати страву</button>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+        <button type="submit" className={classNames("button", { 'is-loading': loadingSubmit })} onClick={(e) => handleSubmit(e)}>
+          {editDishId ? 'Зберегти' : 'Додати страву'}
+        </button>
         <button type="button" className="button" onClick={stopEditing}>Скасувати</button>
       </form>
     </div>

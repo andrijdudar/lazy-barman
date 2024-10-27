@@ -1,29 +1,41 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import './Administration.css';
-import { useEffect, useRef, useState } from 'react';
+import './Administration.scss';
+import { useRef } from 'react';
 import { SideBarAdmin } from './components/SideBarAdmin/SideBarAdmin';
 
 
 export function Administration() {
   const outletRef = useRef(null);
   const location = useLocation();
-  const [shouldScroll, setShouldScroll] = useState(false);
 
-  useEffect(() => {
-    if (shouldScroll) {
-      if (outletRef.current) {
-        const time = setTimeout(() => {
-          outletRef.current.scrollIntoView({top: 200, behavior: 'smooth' });
-          clearTimeout(time);
-        }, 100);
-      }
-      setShouldScroll(false);
+  useLayoutEffect(() => {
+    if (location.state?.scrollTo && outletRef.current) {
+      outletRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [shouldScroll, location]);
+    // if (shouldScroll && outletRef.current && location.pathname.includes('addDish')) {
+    //   outletRef.current.scrollIntoView({ behavior: 'smooth' });
+    //   setShouldScroll(false);
+    // }
+    // if (shouldScroll) {
+    //   if (outletRef.current) {
+    //     const time = setTimeout(() => {
+    //       outletRef.current.scrollIntoView({top: 200, behavior: 'smooth' });
+    //       clearTimeout(time);
+    //     }, 100);
+    //   }
+    //   setShouldScroll(false);
+    // }
+  }, [ location]);
 
   const handleScrollToOutlet = () => {
-    setShouldScroll(true);
+    if (outletRef.current) {
+      const time = setTimeout(() => {
+        outletRef.current.scrollIntoView({ behavior: 'smooth' });
+        clearTimeout(time);
+      }, 500);
+    }
+    // setShouldScroll(true);
   };
 
 

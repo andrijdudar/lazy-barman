@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./SideBarAdmin.css";
+import React, { useState } from "react";
+import "./SideBarAdmin.scss";
 import { Link, useNavigate } from "react-router-dom";
 // import useStoreAuth from "../../../../utils/StoreAuth";
-import iconLogout from "../../../../img/logout-24px.svg";
+import iconLogout from "../../../../img/icons/Logouticon.svg";
 import axios from "axios";
 // import { logout } from "../../../../utils/axiosFunc";
 
@@ -71,31 +71,13 @@ const ListSettings = [
       // { id: 7.3, title: "Страви" },
     ],
   },
-  {
-    id: 8,
-    title: "Звіти",
-    subLinks: [
-      { id: 8.1, path: '', title: "Переглянути Звіти" },
-      // { id: 8.2, path:'', title: "Додати Звіт" },
-      // { id: 8.3, title: "Страви" },
-    ],
-  },
-  {
-    id: 9,
-    title: "Налаштування",
-    subLinks: [
-      { id: 9.1, path: '', title: "Переглянути Налаштування" },
-      // { id: 9.2, path:'', title: "Додати Налаштування" },
-      // { id: 9.3, title: "Страви" },
-    ],
-  },
 ];
 
 export function SideBarAdmin({ onLinkClick }) {
   const navigate = useNavigate();
 
   const [openDetailId, setOpenDetailId] = useState(null);
-  const detailsRef = useRef([]);
+  // const detailsRef = useRef([]);
 
   const handleLogoutSuccess = async () => {
     await axios({
@@ -128,9 +110,9 @@ export function SideBarAdmin({ onLinkClick }) {
   };
 
 
-  useEffect(() => {
-    detailsRef.current = detailsRef.current.slice(0, ListSettings.length);
-  }, []);
+  // useEffect(() => {
+  //   detailsRef.current = detailsRef.current.slice(0, ListSettings.length);
+  // }, []);
 
   const handleToggle = (id) => {
     setOpenDetailId((prevId) => (prevId === id ? null : id));
@@ -150,44 +132,44 @@ export function SideBarAdmin({ onLinkClick }) {
 
   return (
     <div className="SideBarAdmin">
-      {ListSettings.map((item, index) => {
-        const ref = React.createRef();
-        detailsRef.current[index] = ref;
+      {ListSettings.map((item) => (
+        // const ref = React.createRef();
+        // detailsRef.current[index] = ref;
 
-        return (
-          <details
-            key={item.id}
-            ref={ref}
-            open={openDetailId === item.id}
-            onClick={(e) => {
-              e.preventDefault();
-              handleToggle(item.id);
-            }}
-            className="sideBarAdminDetails"
-          >
-            <summary>{item.title}</summary>
-            <div className="subLinksSideBarAdmin">
-              {item.subLinks.map((subLink) => (
-                <Link
-                  key={subLink.id}
-                  to={subLink.path}
-                  relative="path"
-                  className="admin-link"
-                  onClick={() => {
-                    // const time = setTimeout(() => {
-                      onLinkClick();
-                    //   clearTimeout(time);
-                    // }, 300);
-                  }}
-                >
-                  {subLink.title}
-                </Link>
+        // return (
+        <details
+          key={item.id}
+          // ref={ref}
+          open={openDetailId === item.id}
+          onClick={(e) => {
+            e.preventDefault();
+            handleToggle(item.id);
+          }}
+          className="sideBarAdminDetails"
+        >
+          <summary>{item.title}</summary>
+          <div className="subLinksSideBarAdmin">
+            {item.subLinks.map((subLink) => (
+              <Link
+                key={subLink.id}
+                to={subLink.path}
+                relative="path"
+                className="admin-link"
+                onClick={() => {
+                  // const time = setTimeout(() => {
+                  onLinkClick();
+                  //   clearTimeout(time);
+                  // }, 300);
+                }}
+              >
+                {subLink.title}
+              </Link>
 
-              ))}
-            </div>
-          </details>
-        );
-      })}
+            ))}
+          </div>
+        </details>
+        // );
+      ))}
       <button onClick={handleLogoutSuccess} className="button logout" type="button"><img src={iconLogout} alt="logout" /></button>
     </div>
   );

@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from 'react';
-import './SearchSelect.css';
+import React, { useEffect, useRef, useState } from 'react';
+import './SearchSelect.scss';
 import cn from 'classnames';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 // const options = useMemo(() => convertToOptionsSelect(ingredients), [ingredients]);
 
@@ -10,12 +10,14 @@ import { Link } from 'react-router-dom';
 //   setSearchIngredients(filteredItems(ingredients, options));
 // }, [ingredients]);
 
-const SearchSelect = ({ options, updateOptions, placeholder, selectOpen = true, size = 'is-medium', path, onSelect = false }) => {
+const SearchSelect = ({ options, updateOptions, placeholder, selectOpen = true, size = 'is-medium', path, onSelect = false, inputValue = (e) => {} }) => {
   const [selected, setSelected] = useState('');
   const [toggle, setToggle] = useState(false);
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
   const [filtredOptions, setFiltredOptions] = useState(options);
   // const [selectedOptions, setSelectedOptions] = useState([]);
+  const selectRef = useRef(null); // Реф на контейнер селекта
+  const inputRef = useRef(null);
 
   const handleInput = (event) => {
     if (toggle === false) {
@@ -23,20 +25,21 @@ const SearchSelect = ({ options, updateOptions, placeholder, selectOpen = true, 
     }
 
     setSelected(event.target.value);
+    inputValue(event.target.value);
     const filteredOptions = options.filter((value) => value.value.toLowerCase().includes(event.target.value.toLowerCase()));
     setFiltredOptions(filteredOptions);
-    updateOptions(filteredOptions);
+    // updateOptions(filteredOptions);
 
-    if (filteredOptions.length === 0) {
-      setError(true);
+    // if (filteredOptions.length === 0) {
+    //   setError(true);
 
-      const wait = setTimeout(() => {
-        setError(false);
-        clearTimeout(wait);
-      }, 10000);
-    } else {
-      setError(false);
-    }
+    //   const wait = setTimeout(() => {
+    //     setError(false);
+    //     clearTimeout(wait);
+    //   }, 10000);
+    // } else {
+    //   setError(false);
+    // }
   };
 
   const handleSelect = (option) => {
@@ -56,11 +59,32 @@ const SearchSelect = ({ options, updateOptions, placeholder, selectOpen = true, 
     setToggle(false);
   };
 
+
+
+
+  const handleWindowScroll = (event) => {
+    if (
+      selectRef.current &&
+      !selectRef.current.contains(event.target) // Перевірка, чи клік/скрол був поза селектом
+    ) {
+      setToggle(false);
+      inputRef.current?.blur(); // Знімаємо фокус з інпуту
+
+    }
+  };
+
+  useEffect(() => {
+    if (toggle) {
+      window.addEventListener('scroll', handleWindowScroll, true); // Захоплюємо подію скролу
+    }
+    return () => window.removeEventListener('scroll', handleWindowScroll, true);
+  }, [toggle]);
   return (
     <div className='searchSelect'>
       <div className="field-search">
         <p className="control has-icons-left">
           <input
+            ref={inputRef}
             className={`input-search input is-rounded ${size}`}
             style={{ 'paddingLeft': '40px' }}
             type="text"
@@ -97,18 +121,18 @@ const SearchSelect = ({ options, updateOptions, placeholder, selectOpen = true, 
         </p>
       </div>
 
-      {error && (
-        <p className="help is-danger is-size-6">
-          Такого значення не знайдено
-          <Link to={path} type='button' className='button is-small is-danger'>
+      {/* {error && ( */}
+        {/* <p className="help is-danger is-size-6"> */}
+          {/* Такого значення не знайдено */}
+          {/* <Link to={path} type='button' className='button is-small is-danger'>
             Добавити нове
-          </Link>
-        </p>
-      )}
+          </Link> */}
+        {/* </p> */}
+      {/* )} */}
       {/* {errorValueIsHeve && <p className="help is-danger is-size-6">Таке значення вже вибрано</p>} */}
 
       {selectOpen && (
-        <div className={cn(
+        <div ref={selectRef} className={cn(
           'select-container',
           { 'display-none': !filtredOptions.length || !toggle },
           { 'search-select': toggle }

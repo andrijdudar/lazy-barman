@@ -1,0 +1,72 @@
+.nav-buttons {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+  // align-self: center;
+  font-size: 14px;
+  font-weight: bold;
+  @media (orientation: portrait) {
+    gap: 20px;
+    justify-content: space-between;
+  }
+}
+
+.nav-button-link {
+  display: block;
+  color: whitesmoke;
+  border: 1px solid transparent;
+  border-radius: 25px;
+  padding: 10px 15px;
+
+  &:hover {
+    color: var(--colorTextOrangeHover);
+  }
+}
+
+.nav-button-link-settings {
+  display: block;
+  color: var(--colorTextOrange);
+  border: 1px solid transparent;
+  border-radius: 25px;
+  padding: 5px 10px;
+  transition: 0.3s;
+}
+
+.icon_menu {
+  display: none;
+  fill: whitesmoke;
+  border-radius: 0.5em;
+  width: 3.5em;
+  height: 3.5em;
+  padding: 5px;
+  cursor: pointer;
+  box-shadow: 2px 1px 5px rgba(0, 0, 0, 1),
+    -2px -2px 5px rgba(255, 255, 255, 0.14);
+
+
+
+  @media (orientation: portrait) {
+    display: block;
+  }
+}
+
+.text_button_menu {
+  @media (orientation: portrait) {
+    display: none;
+  }
+}
+
+.has-border {
+  box-shadow: 0 0 5px 0.9px var(--colorTextOrange);
+  color: var(--colorTextOrange);
+  fill: var(--colorTextOrange);
+
+  @media (orientation: portrait) {
+    box-shadow: none;
+  }
+}
+.has-border-nav {
+  // box-shadow: 0 0 5px 0.5px var(--colorTextOrange);
+  color: var(--colorTextOrange);
+  fill: var(--colorTextOrange);
+}

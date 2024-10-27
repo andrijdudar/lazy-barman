@@ -1,12 +1,14 @@
 .searchSelect {
+    position: relative;
   box-sizing: border-box;
   background-color: none;
   width: 100%;
   max-width: 350px;
-  margin: 0 5px;
+  margin: 0 auto;
 }
 
 .field-search {
+
   transition: all 0.3s ease;
   position: relative;
   min-width: 100%;

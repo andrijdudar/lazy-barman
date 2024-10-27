@@ -85,12 +85,13 @@
     position: fixed;
     right: 0;
     overflow-y: scroll;
-    z-index: 1;
-    min-width: 360px;
-    width: 100vw;
+    z-index: 2;
+    // min-width: 360px;
+    width: 100%;
     max-width: 100vh;
-    border-radius: 0.5em;
-    transform: translateY(-110%);
+    // border-radius: 0.5em;
+    border-radius: 1em 1em 0 0;
+    transform: translateY(130%);
     background-color: var(--backgroundNavBar);
     /* height: 0; */
     /* block-size: 0; */
@@ -101,13 +102,15 @@
   }
 
   .wrapper-open {
-    position: relative;
-    padding-block: 10px;
-    display: block;
+    position: absolute;
+    bottom: 0;
+    // padding-block: 10px;
+    // display: block;
     height: min-content;
     /* overflow-y: auto; */
-    transform: translateX(0);
-    overflow-y: hidden;
+    transform: translateY(0);
+    overflow-y: auto;
+    max-height: 100vh;
     /* opacity: 0.01; */
   }
 }

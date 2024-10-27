@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import './Login.css';
+import './Login.scss';
 import cn from 'classnames';
 // import { getRefreshToken } from '../../../utils/axiosFunc';
 import useStoreAuth from '../../../utils/StoreAuth';

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { createPremix, getAllIngredients, getAllPremixes } from '../../../../../utils/axiosFunc';
 import SearchSelect from '../../../../utilsAdministration/SearchSelect/SearchSelect';
 import { convertToOptionsSelect, filteredItems } from '../../../../utilsAdministration/SearchSelect/SearchUtils';
-import './AddPremix.css';
+import './AddPremix.scss';
 import { Loading } from '../../../../../utils/Loading/Loading';
 import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';

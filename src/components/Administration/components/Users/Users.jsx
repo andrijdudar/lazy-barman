@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Users.css';
+import './Users.scss';
 import { deleteUser, getAllUsers, patchUser } from '../../../../utils/axiosFunc';
 import { useNavigate } from 'react-router-dom';
 

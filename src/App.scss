@@ -8,7 +8,7 @@
 .App {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: min-content 1fr 25px;
+  grid-template-rows: min-content 1fr;
   grid-template-areas:
     "header"
     "content"
@@ -27,11 +27,17 @@
   max-width: 100vw;
   overflow: hidden;
   grid-area: content;
+
 }
 @media (orientation: portrait) {
   .App {
-    grid-template-rows: min-content 1fr 25px;
+    grid-template-rows: 1fr min-content;
+    grid-template-areas:
+    "content"
+    "header";
+
     .conten {
+      grid-area: "content";
       overflow: auto;
       width: 100vw;
       height: 100%;

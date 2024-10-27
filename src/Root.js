@@ -29,7 +29,7 @@ export const Root = () => {
           <Route path="menu" element={<Menu />} />
           <Route path="detailsDish/:id" element={<DishDetails />} />
           <Route path="admin" element={<Administration />} >
-            <Route path="addDish" element={<AddDish />} />
+            <Route path="addDish/:id?" element={<AddDish />} />
             <Route path="ingredients" element={<Ingredients />} />
             <Route path="premix" element={<Premix />} />
             <Route path="addPremix" element={<AddPremix />} />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './../cocktails/CocktailForm.scss';
 import cn from 'classnames';
-import './DishForm.css';
+import './DishForm.scss';
 import { SERVER_URL } from '../../services/httpClient';
 
 

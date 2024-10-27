@@ -12,6 +12,7 @@
   box-shadow: 2px 1px 5px rgba(0, 0, 0, 1),
     -2px -2px 5px rgba(255, 255, 255, 0.14);
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 @media (orientation: portrait) {
@@ -20,9 +21,12 @@
   }
   .burger {
     display: none;
+    @media (orientation: portrait) {
+      display: block;
+     }
   }
   .burger-visible {
-    display: block;
+    display: none;
   }
 }
 

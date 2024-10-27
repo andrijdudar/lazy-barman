@@ -2,15 +2,27 @@ iframe {
   display: none;
 }
 html {
-  background-color: #282c34;
-  background-image: linear-gradient(
+  // background-color: #282c34;
+  height: 100vh;
+    background-image: linear-gradient(
     to bottom,
     #282c34,
-    // #37393f,
-    // #45464a,
+    #37393f,
+    #45464a,
     #545456,
-    // #626262
-  );
+    // #626262,
+    );
+    
+  @media (orientation: portrait) {
+    background-image: linear-gradient(
+    to bottom,
+    // #626262,
+    // #545456,
+    #45464a,
+    #37393f,
+    #282c34,
+    );
+  }
 }
 
 body {

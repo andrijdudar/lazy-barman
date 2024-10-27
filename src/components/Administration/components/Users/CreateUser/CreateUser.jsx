@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './CreateUser.css';
+import './CreateUser.scss';
 import { createUser } from '../../../../../utils/axiosFunc';
 import { useNavigate } from 'react-router-dom';
 

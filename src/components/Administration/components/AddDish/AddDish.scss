@@ -1,0 +1,106 @@
+.AddDish {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 800px;
+  // margin-bottom: 100vh;
+  height: 100%;
+  padding: 10px;
+  overflow-y: auto;
+
+  .formAddDish {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+
+    .inputContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+      margin-top: 10px;
+
+      .ingredient-li-container {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #595757;
+
+        .label_addDish_item {
+          width: 60%;
+          font-size: 16px;
+        }
+
+        .ingredient-li {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 10px;
+
+          .ingredient-li-input {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            width: 65px;
+            height: 30px;
+            margin: 0;
+          }
+
+          .button-del-ingredeint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+          }
+
+        }
+      }
+      .container_searchSelect_tag {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+        // align-items: first baseline;
+        // align-content: first baseline;
+
+      }
+    }
+    .file {
+      margin: 0 auto;
+    }
+    .photo {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+    }
+  }
+
+  .input[type="number"]::-webkit-outer-spin-button,
+  .input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  .input::placeholder,
+  .textarea::placeholder {
+    color: #84808098;
+  }
+}

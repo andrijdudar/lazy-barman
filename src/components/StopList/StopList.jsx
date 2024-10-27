@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import './StopList.css';
+import './StopList.scss';
 import useStore from '../../utils/Store';
 import { getStopList } from '../../utils/axiosFunc';
 import { Loading } from '../../utils/Loading/Loading';

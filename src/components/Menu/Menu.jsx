@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Menu.css";
+import "./Menu.scss";
 import { MenuCards } from "./MenuCards";
 import SideBar from "./SideBar";
 
