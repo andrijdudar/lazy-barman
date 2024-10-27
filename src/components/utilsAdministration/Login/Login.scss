@@ -46,7 +46,7 @@ h6 .span {
   display: grid;
   place-content: center;
   color: #c4c3ca;
-  max-height: 100svh;
+  max-height: 100lvh;
 
   @media (orientation: portrait) {
     padding: 10px;
@@ -59,7 +59,7 @@ h6 .span {
 }
 
 .full-height {
-  min-height: 100svh;
+  min-height: 100lvh;
 }
 
 [type="checkbox"]:checked,
