@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/lazy-barman/static/css/main.eb6a1cbc.css",
-    "main.js": "/lazy-barman/static/js/main.bda8435b.js",
+    "main.css": "/lazy-barman/static/css/main.8c092eb5.css",
+    "main.js": "/lazy-barman/static/js/main.5a9ca1b3.js",
     "static/media/fa-solid-900.ttf": "/lazy-barman/static/media/fa-solid-900.07ed6d5fa32c1d54af0f.ttf",
     "static/media/fa-brands-400.ttf": "/lazy-barman/static/media/fa-brands-400.0ff70dcbf135d859ebf3.ttf",
     "static/media/fa-solid-900.woff2": "/lazy-barman/static/media/fa-solid-900.93f719f4d62bfa3e748c.woff2",
@@ -15,12 +15,12 @@
     "static/media/ListIconsolid.svg": "/lazy-barman/static/media/ListIconsolid.df9761e080c4e874550440d9f30b233a.svg",
     "static/media/delete-forever-24px.svg": "/lazy-barman/static/media/delete-forever-24px.ffbfbd3e977da16935042abeca8675df.svg",
     "static/media/ListIconlarge.svg": "/lazy-barman/static/media/ListIconlarge.b530f0329178ba1897abdfe84b37d2ba.svg",
-    "static/media/logout-24px.svg": "/lazy-barman/static/media/logout-24px.3ef7070bd4656d6c4f5ea0ae0f455a00.svg",
-    "main.eb6a1cbc.css.map": "/lazy-barman/static/css/main.eb6a1cbc.css.map",
-    "main.bda8435b.js.map": "/lazy-barman/static/js/main.bda8435b.js.map"
+    "static/media/Logouticon.svg": "/lazy-barman/static/media/Logouticon.d879791bf7350ef17e7eed660573b97c.svg",
+    "main.8c092eb5.css.map": "/lazy-barman/static/css/main.8c092eb5.css.map",
+    "main.5a9ca1b3.js.map": "/lazy-barman/static/js/main.5a9ca1b3.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb6a1cbc.css",
-    "static/js/main.bda8435b.js"
+    "static/css/main.8c092eb5.css",
+    "static/js/main.5a9ca1b3.js"
   ]
 }
